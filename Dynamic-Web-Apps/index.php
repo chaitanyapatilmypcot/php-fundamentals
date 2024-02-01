@@ -1,36 +1,43 @@
-<?php 
+    <?php 
 
-require "functions.php";
-//require "router.php";
+    require "functions.php";
 
-// Connect to Database and Excute the query
+    require "Database.php";
 
-require "Database.php";
+    require "router.php";
 
-// extract config from config.php 
+    // Connect to Database and Excute the query
 
-$config = require ('config.php');
-$db = new Database($config['databases']);
+    
 
+    // extract config from config.php 
 
-
-
-// $id = $_GET['id'];
-// $query = "select * from posts where id = :id";
-$query = "select * from posts";
-
-// dd($query);
-
-// $posts = $db->query($query, [ ':id' => $id])->fetch();
-$posts = $db->query($query)->fetchAll();
-
-//use this otherb than dump and die
-// print_r($posts);exit;
+    // $config = require ('config.php');
+    // $db = new Database($config['databases']);
 
 
-foreach($posts as $post) {
-    echo "<p>" . $post['id'] . "</p>";
-    echo "<li>" . $post['title'] . "</li>";
-}
+
+
+    // $id = $_GET['id'];
+    // $query = "select * from posts where id = :id";
+    $query = "select * from posts";
+
+    // dd($query);
+
+    // $posts = $db->query($query, [ ':id' => $id])->fetch();
+    $postsResult = $db->query($query);
+    $posts = mysqli_fetch_all($postsResult, MYSQLI_ASSOC);
+
+
+    //use this otherb than dump and die
+    // print_r($posts);exit;
+
+
+
+
+    foreach($posts as $post) {
+        echo "<p>" . $post['id'] . "</p>";
+        echo "<li>" . $post['title'] . "</li>";
+    }
  
 

@@ -1,16 +1,12 @@
 <?php 
 
-//1. ROUTING (passing the current uri and routing to that file)
 
-$uri = parse_url($_SERVER['REQUEST_URI'])['path'];
+$routes = require('routes.php');
+
 
 // dd($uri);
 
-$routes = [
-    '/' => 'controllers/index.php',
-    '/about' => 'controllers/about.php',
-    '/contact' => 'controllers/contact.php',
-];
+
 
 function abort($code) {
 
@@ -36,6 +32,10 @@ function routeToController($uri, $routes) {
     }
 
 }
+
+//1. ROUTING (passing the current uri and routing to that file)
+
+$uri = parse_url($_SERVER['REQUEST_URI'])['path'];
 
 routeToController($uri, $routes);
 

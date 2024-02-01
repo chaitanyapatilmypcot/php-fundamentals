@@ -10,6 +10,6 @@ $query = "SELECT * FROM notes where user_id = 1";
 $notesResult = $db->query($query);
 $notes = mysqli_fetch_all($notesResult, MYSQLI_ASSOC);
 
-// dd($notes);
+// dd($notes);  
 
 require "views/notes.view.php";
